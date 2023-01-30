@@ -14,18 +14,16 @@ public class HechizosController {
 		this.connection = connection;
 	}
 
-	public void showTeams() throws SQLException, IOException {
+	public void showHechizos() throws SQLException, IOException {
 
 		Statement st = connection.createStatement();
 		ResultSet rs;
 
-		rs = st.executeQuery("SELECT * FROM team");
+		rs = st.executeQuery("SELECT * FROM hechizos");
 		while (rs.next()) {
-			System.out.println("Name: " + rs.getString("name") + " " +
-							   "Type: " + rs.getString("type") + " " +
-							   "Country: " + rs.getString("country") + " " +
-							   "City: " + rs.getString("city") + " " +
-							   "Court name: " + rs.getString("court_name"));
+			System.out.println("Nombre: " + rs.getString("nombre") + " " +
+							   "Popularidad: " + rs.getString("popularidad") + " " +
+							   "Porcentaje de victoria: " + rs.getString("porcentaje_de_victoria"));
 		}
 
 		rs.close();
