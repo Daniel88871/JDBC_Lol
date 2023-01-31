@@ -18,7 +18,7 @@ public class Main {
 		ObjetosController objetosController = new ObjetosController(c);
 
 		int option = menu.mainMenu();
-		while (option > 0 && option < 12) {
+		while (option > 0 && option < 5) {
 			switch (option) {
 			case 1:
 				campeonesController.showCampeones();
@@ -32,9 +32,8 @@ public class Main {
 				objetosController.showObjetos();
 				break;
 
-			default:
-				System.out.println("Introduzca una de las opciones anteriores");
-				break;
+			case 4:
+				System.exit(0);
 
 			}
 			option = menu.mainMenu();

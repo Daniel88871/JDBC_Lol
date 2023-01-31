@@ -1,21 +1,26 @@
 CREATE TABLE campeones (
-nombre VARCHAR (400),
-popularidad VARCHAR (400),
-porcentaje_de_victoria VARCHAR (400),
-porcentaje_de_baneo VARCHAR (400),
-kda VARCHAR (400),
-pentas_por_partida VARCHAR (400)
-);
+id_campeones serial,
+nombre varchar(600),
+popularidad varchar(600),
+porcentaje_de_victoria varchar(600),
+porcentaje_de_baneo varchar(600),
+kda varchar(600),
+pentas_por_partida varchar(600),
+primary key(id_campeones));
+
 
 
 CREATE TABLE hechizos (
-nombre VARCHAR (50),
-popularidad VARCHAR (50),
-porcentaje_de_victoria VARCHAR (50)
-);
+id_hechizos serial,
+nombre varchar(500),
+popularidad varchar(500),
+porcentaje_de_victoria varchar(500),
+primary key(id_hechizos));
+
 
 
 CREATE TABLE objetos (
-popularidad VARCHAR (100),
-porcentaje_de_victoria VARCHAR (100)
-);
+id_objetos serial,
+popularidad varchar(200),
+porcentaje_de_victoria varchar(200),
+primary key(id_objetos));
