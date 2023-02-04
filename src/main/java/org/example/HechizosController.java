@@ -1,10 +1,7 @@
 package org.example;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class HechizosController {
 
@@ -15,18 +12,62 @@ public class HechizosController {
 	}
 
 	public void showHechizos() throws SQLException, IOException {
+		ResultSet rs = null;
+		String sql = "SELECT * FROM hechizos";
 
-		Statement st = connection.createStatement();
-		ResultSet rs;
+		try {
+			Statement st = connection.createStatement();
 
-		rs = st.executeQuery("SELECT * FROM hechizos");
-		while (rs.next()) {
-			System.out.println("Nombre: " + rs.getString("nombre") + " " +
-							   "Popularidad: " + rs.getString("popularidad") + " " +
-							   "Porcentaje de victoria: " + rs.getString("porcentaje_de_victoria"));
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				System.out.println("Nombre: " + rs.getString("nombre") + " " +
+						"Popularidad: " + rs.getString("popularidad") + " " +
+						"Porcentaje de victoria: " + rs.getString("porcentaje_de_victoria"));
+			}
+			rs.close();
+			st.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("La tabla no existe");
 		}
+	}
 
-		rs.close();
-		st.close();
+	public void deleteHechizos() throws  SQLException, IOException {
+		ResultSet rs = null;
+		String sql = "DELETE TABLE hechizos";
+
+		try {
+			Statement st = connection.createStatement();
+
+			rs = st.executeQuery(sql);
+			while (rs.next()) {
+				System.out.println("Se ha eliminado la tabla hechizos");
+			}
+			rs.close();
+			st.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("La tabla hechizos no existe, por lo tanto no se puede borrar nada");
+		}
+	}
+
+	public void addHechizos() {
+		try {
+			Statement st = connection.createStatement();
+
+			st.executeUpdate("CREATE TABLE hechizos (" +
+					"id_hechizos serial," +
+					"nombre varchar(500)," +
+					"popularidad varchar(500)," +
+					"porcentaje_de_victoria varchar(500)," +
+					"primary key(id_hechizos));");
+
+			st.close();
+
+		} catch (SQLException e) {
+			System.out.println("Error: No se pueden crear la tabla, fijate si ya están creadas");
+		}
 	}
 }

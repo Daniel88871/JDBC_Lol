@@ -15,17 +15,61 @@ public class ObjetosController {
     }
 
     public void showObjetos() throws SQLException, IOException {
+        ResultSet rs = null;
+        String sql = "SELECT * FROM objetos";
 
-        Statement st = connection.createStatement();
-        ResultSet rs;
+        try {
+            Statement st = connection.createStatement();
 
-        rs = st.executeQuery("SELECT * FROM objetos");
-        while (rs.next()) {
-            System.out.println("Popularidad: " + rs.getString("popularidad") + " " +
-                    "Porcentaje de victoria: " + rs.getString("porcentaje_de_victoria"));
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println("Popularidad: " + rs.getString("popularidad") + " " +
+                        "Porcentaje de victoria: " + rs.getString("porcentaje_de_victoria"));
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("La tabla no existe");
         }
 
-        rs.close();
-        st.close();
+    }
+
+    public void deleteObjetos() throws SQLException, IOException {
+        ResultSet rs = null;
+        String sql = "DELETE TABLE objetos";
+
+        try {
+            Statement st = connection.createStatement();
+
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println("Se ha borrado la tabla objetos");
+            }
+            rs.close();
+            st.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("La tabla objetos no existe, por lo tanto no se puede borrar nada");
+        }
+    }
+
+    public void addObjetos() {
+        try {
+            Statement st = connection.createStatement();
+
+            st.executeUpdate("CREATE TABLE objetos (" +
+                    "id_objetos serial," +
+                    "popularidad varchar(200)," +
+                    "porcentaje_de_victoria varchar(200)," +
+                    "primary key(id_objetos));");
+
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error: No se pueden crear la tabla, fijate si ya están creadas");
+        }
     }
 }

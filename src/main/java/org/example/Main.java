@@ -18,25 +18,49 @@ public class Main {
 		ObjetosController objetosController = new ObjetosController(c);
 
 		int option = menu.mainMenu();
-		while (option > 0 && option < 5) {
+		while (option > 0 && option < 11) {
 			switch (option) {
-			case 1:
-				campeonesController.showCampeones();
-				break;
+				case 1:
+					campeonesController.showCampeones();
+					break;
 
-			case 2:
-				hechizosController.showHechizos();
-				break;
+				case 2:
+					hechizosController.showHechizos();
+					break;
 
-			case 3:
-				objetosController.showObjetos();
-				break;
+				case 3:
+					objetosController.showObjetos();
+					break;
 
-			case 4:
-				System.exit(0);
+				case 4:
+					campeonesController.addCampeones();
+					break;
 
+				case 5:
+					campeonesController.deleteCampeones();
+					break;
+
+				case 6:
+					hechizosController.addHechizos();
+					break;
+
+				case 7:
+					hechizosController.deleteHechizos();
+					break;
+
+				case 8:
+					objetosController.addObjetos();
+					break;
+
+				case 9:
+					objetosController.deleteObjetos();
+					break;
+
+				case 10:
+					System.exit(0);
 			}
 			option = menu.mainMenu();
+
 		}
 	}
 }
