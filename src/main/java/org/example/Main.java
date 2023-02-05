@@ -1,15 +1,22 @@
 package org.example;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException, SQLException, ParseException {
 		Menu menu = new Menu();
-		
+
 		ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
 		Connection c = connectionFactory.connect();
 
@@ -18,7 +25,7 @@ public class Main {
 		ObjetosController objetosController = new ObjetosController(c);
 
 		int option = menu.mainMenu();
-		while (option > 0 && option < 11) {
+		while (option > 0 && option < 17) {
 			switch (option) {
 				case 1:
 					campeonesController.showCampeones();
@@ -37,19 +44,19 @@ public class Main {
 					break;
 
 				case 5:
-					campeonesController.deleteCampeones();
-					break;
-
-				case 6:
 					hechizosController.addHechizos();
 					break;
 
+				case 6:
+					objetosController.addObjetos();
+					break;
+
 				case 7:
-					hechizosController.deleteHechizos();
+					campeonesController.deleteCampeones();
 					break;
 
 				case 8:
-					objetosController.addObjetos();
+					hechizosController.deleteHechizos();
 					break;
 
 				case 9:
@@ -57,10 +64,154 @@ public class Main {
 					break;
 
 				case 10:
+					campeonesController.mostrarIDCampeones();
+					break;
+
+				case 11:
+					hechizosController.mostrarIDHechizos();
+					break;
+
+				case 12:
+					objetosController.mostrarIDObjetos();
+					break;
+
+				case 13:
+					CSVCampeones(c);
+					break;
+
+				case 14:
+					CSVHechizos(c);
+					break;
+
+				case 15:
+					CSVObjetos(c);
+					break;
+
+				case 16:
 					System.exit(0);
 			}
 			option = menu.mainMenu();
 
+		}
+	}
+	public static void CSVCampeones(Connection connection) {
+		List < String[]>csv = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/campeones.csv"));
+			String line;
+
+			while ((line = br.readLine()) != null) {
+				String[] data = line.split("\",\"");
+				csv.add(data);
+			}
+
+			for (String[] data : csv) {
+				try {
+					Statement st = connection.createStatement();
+					String nombre = data[0];
+					String popularidad = data[1];
+					String porcentaje_de_victoria = data[2];
+					String porcentaje_de_baneo = data[3];
+					String kda = data[4];
+					String pentas_por_partida = data[5];
+
+					String sql = "INSERT INTO campeones " + "(nombre,popularidad,porcentaje_de_victoria,porcentaje_de_baneo,kda,pentas_por_partida) VALUES(?,?,?,?,?,?)";
+
+					PreparedStatement pst = connection.prepareStatement(sql);
+					pst.setString(1, nombre);
+					pst.setString(2, popularidad);
+					pst.setString(3, porcentaje_de_victoria);
+					pst.setString(4, porcentaje_de_baneo);
+					pst.setString(5, kda);
+					pst.setString(6, pentas_por_partida);
+					pst.executeUpdate();
+					pst.close();
+				} catch (SQLException e) {
+					System.out.println("No se ha rellenado la tabla porque ya está rellenada");
+				}
+			}
+			System.out.println("Se ha rellenado la tabla campeones");
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void CSVHechizos(Connection connection) {
+		List<String[]> csv = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/hechizos.csv"));
+			String line;
+
+			while ((line = br.readLine()) != null) {
+				String[] data = line.split("\",\"");
+				csv.add(data);
+			}
+
+			for (String[] data : csv) {
+				try {
+					Statement st = connection.createStatement();
+					String nombre = data[0];
+					String popularidad = data[1];
+					String porcentaje_de_victoria = data[2];
+
+					String sql = "INSERT INTO hechizos " + "(nombre,popularidad,porcentaje_de_victoria) VALUES(?,?,?)";
+
+					PreparedStatement pst = connection.prepareStatement(sql);
+					pst.setString(1, nombre);
+					pst.setString(2, popularidad);
+					pst.setString(3, porcentaje_de_victoria);
+					pst.executeUpdate();
+					pst.close();
+				} catch (SQLException e) {
+					System.out.println("No se ha rellenado la tabla porque ya está rellenada");
+				}
+			}
+			System.out.println("Se ha rellenado la tabla hechizos");
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void CSVObjetos(Connection connection) {
+		List<String[]> csv = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/objetos.csv"));
+			String line;
+
+			while ((line = br.readLine()) != null) {
+				String[] data = line.split("\",\"");
+				csv.add(data);
+			}
+
+			for (String[] data : csv) {
+				try {
+					Statement st = connection.createStatement();
+					String popularidad = data[0];
+					String porcentaje_de_victoria = data[1];
+
+					String sql = "INSERT INTO objetos " + "(popularidad,porcentaje_de_victoria) VALUES(?,?)";
+
+					PreparedStatement pst = connection.prepareStatement(sql);
+					pst.setString(1, popularidad);
+					pst.setString(2, porcentaje_de_victoria);
+					pst.executeUpdate();
+					pst.close();
+				} catch (SQLException e) {
+					System.out.println("No se ha rellenado la tabla porque ya está rellenada");
+				}
+			}
+			System.out.println("Se ha rellenado la tabla objetos");
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

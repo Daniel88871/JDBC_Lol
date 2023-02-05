@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class CampeonesController {
+
+	Scanner scanner = new Scanner(System.in);
 
 	private Connection connection;
 
@@ -34,27 +37,22 @@ public class CampeonesController {
 			st.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("La tabla no existe");
+			System.out.println("La tabla campeones no existe");
 		}
 	}
 
 	public void deleteCampeones() throws SQLException, IOException {
-		ResultSet rs = null;
-		String sql = "DELETE TABLE campeones";
+		String sql = "DROP TABLE campeones";
 
 		try {
 			Statement st = connection.createStatement();
 
-			rs = st.executeQuery(sql);
-			while (rs.next()) {
-				System.out.println("Se ha eliminado la tabla campeones");
-			}
-			rs.close();
+			st.executeUpdate(sql);
+
+			System.out.println("La tabla campeones se ha borrado");
 			st.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			System.out.println("La tabla campeones no existe, por lo tanto no se puede borrar nada");
 		}
 	}
@@ -73,10 +71,41 @@ public class CampeonesController {
 					"pentas_por_partida varchar(600)," +
 					"primary key(id_campeones));");
 
+			System.out.println("Se ha creado la tabla campeones");
+
 			st.close();
 
 		} catch (SQLException e) {
 			System.out.println("Error: No se pueden crear la tabla, fijate si ya están creadas");
+		}
+	}
+
+	public void mostrarIDCampeones(){
+		ResultSet rs = null;
+		System.out.println("Inserta una ID de campeón: ");
+		String ids = scanner.nextLine();
+
+		String sql = "SELECT * FROM campeones WHERE id_campeones = '" + ids + "'";
+		try {
+			Statement st = connection.createStatement();
+
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				System.out.println("-----------------------------------------" +
+						"\nNombre: " + rs.getString("nombre") +
+						"\nPopularidad: " + rs.getString("popularidad") +
+						"\nPorcentaje de victoria: " + rs.getString("porcentaje_de_victoria") +
+						"\nPorcentaje de baneo: " + rs.getString("porcentaje_de_baneo") +
+						"\nKda: " + rs.getString("kda") +
+						"\nPentas por partida: " + rs.getString("pentas_por_partida") +
+						"\n-----------------------------------------");
+			}
+			rs.close();
+			st.close();
+
+		} catch (SQLException e){
+			e.printStackTrace();
 		}
 	}
 }
