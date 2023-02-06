@@ -12,6 +12,13 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * La clase Main es la clase principal de nuestra práctica, se encargará de iniciar la conexión a nuestra BBDD y mostrará el
+ * menu principal, con el que el usuario interactuará con las tablas.
+ *
+ * @author Daniel Ruiz - Daniel88871 in GitHub
+ * @version 8.0
+ */
 public class Main {
 
 	public static void main(String[] args) throws IOException, SQLException, ParseException {
@@ -94,6 +101,13 @@ public class Main {
 
 		}
 	}
+
+	/**
+	 * Este método crea una lista de la data de un archivo CSV que leeremos con BufferedReader.
+	 * Una vez hecho esto, separaremos la línea haciendo un split, y añadiremos el resultado de la información en
+	 * la lista que hemos creado. Una vez hecho esto, lo recorrerá con un for, y hará los INSERTS del archivo CSV.
+	 *
+	 */
 	public static void CSVCampeones(Connection connection) {
 		List < String[]>csv = new ArrayList<>();
 		try {
@@ -139,6 +153,12 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Este método crea una lista de la data de un archivo CSV que leeremos con BufferedReader.
+	 * Una vez hecho esto, separaremos la línea haciendo un split, y añadiremos el resultado de la información en
+	 * la lista que hemos creado. Una vez hecho esto, lo recorrerá con un for, y hará los INSERTS del archivo CSV.
+	 *
+	 */
 	public static void CSVHechizos(Connection connection) {
 		List<String[]> csv = new ArrayList<>();
 		try {
@@ -178,6 +198,12 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Este método crea una lista de la data de un archivo CSV que leeremos con BufferedReader.
+	 * Una vez hecho esto, separaremos la línea haciendo un split, y añadiremos el resultado de la información en
+	 * la lista que hemos creado. Una vez hecho esto, lo recorrerá con un for, y hará los INSERTS del archivo CSV.
+	 *
+	 */
 	public static void CSVObjetos(Connection connection) {
 		List<String[]> csv = new ArrayList<>();
 		try {

@@ -4,13 +4,28 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Esta clase llamada Menu permite interactuar con un menú en consola que permite realizar
+ * diversas operaciones con una base de datos PostgreSQL.
+ *
+ * @author Daniel Ruiz - Daniel88871 in GitHub
+ * @version 8.0
+ */
 public class Menu {
 	private int option;
 
+	/**
+	 * Este constructor llama al super(), en el que mostraremos el menú.
+	 */
 	public Menu() {
 		super();
 	}
 
+	/**
+	 * El método mainMenu muestra las opciones disponibles para interactuar con la BBDD PostgreSQL.
+	 *
+	 * @return La opción elegida por el usuario en la consola.
+	 */
 	public int mainMenu() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -47,6 +62,12 @@ public class Menu {
 		return option;
 	}
 
+	/**
+	 * En este método lo que se hace es pedir y verificar las credenciales del usuario postgres.
+	 *
+	 * @return La identidad del usuario.
+	 * @throws IOException Devuelve una excepción si hay problemas al leer los datos del usuario.
+	 */
 	public Identity authenticate(int tries) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("============================LOL=============================");

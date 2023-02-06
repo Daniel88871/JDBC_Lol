@@ -7,16 +7,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+/**
+ * CampeonesController se usa para controlar la información de la tabla campeones.
+ * Esta clase tiene unos métodos que te muestra, borra y crea la tabla "campeones" aparte de un método que busca por ID cada campeón.
+ *
+ * @author Daniel Ruiz - Daniel88871 in GitHub
+ * @version 8.0
+ */
 public class CampeonesController {
 
 	Scanner scanner = new Scanner(System.in);
 
 	private Connection connection;
 
+	/**
+	 * Esto nos permite conectarnos a la base de datos del postgresql y con este controlador podremos buscar, borrar, añadir y buscar por ID.
+	 */
 	public CampeonesController(Connection connection) {
 		this.connection = connection;
 	}
 
+	/**
+	 * Este método recoge toda la información actual que hay en la tabla campeones y la muestra para que el usuario la pueda leer.
+	 */
 	public void showCampeones() throws SQLException, IOException {
 		ResultSet rs = null;
 		String sql = "SELECT * FROM campeones";
@@ -41,6 +54,9 @@ public class CampeonesController {
 		}
 	}
 
+	/**
+	 * Este método lo que hace es borrar la tabla campeones en el caso de que esté creada.
+	 */
 	public void deleteCampeones() throws SQLException, IOException {
 		String sql = "DROP TABLE campeones";
 
@@ -57,6 +73,9 @@ public class CampeonesController {
 		}
 	}
 
+	/**
+	 * Aquí creamos la tabla campeones y la llenamos con sus atributos.
+	 */
 	public void addCampeones() {
 		try {
 			Statement st = connection.createStatement();
@@ -80,6 +99,12 @@ public class CampeonesController {
 		}
 	}
 
+
+	/**
+	 * Aquí mostramos la información actual de la tabla campeones en base al atributo "id_campeones", y después le preguntará al usuario que ID de campeon quiere introducir,
+	 * y una vez se haya introducido una ID, mostrará toda la información de ese campeón en concreto.
+	 *
+	 */
 	public void mostrarIDCampeones(){
 		ResultSet rs = null;
 		System.out.println("Inserta una ID de campeón: ");

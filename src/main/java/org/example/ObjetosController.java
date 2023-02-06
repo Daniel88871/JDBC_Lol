@@ -7,16 +7,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+/**
+ * ObjetosController se usa para controlar la información de la tabla objetos.
+ * Esta clase tiene unos métodos que te muestra, borra y crea la tabla "objetos" aparte de un método que busca por ID cada objeto.
+ *
+ * @author Daniel Ruiz - Daniel88871 in GitHub
+ * @version 8.0
+ */
 public class ObjetosController {
 
     Scanner scanner = new Scanner(System.in);
 
     private Connection connection;
 
+    /**
+     * Esto nos permite conectarnos a la base de datos del postgresql y con este controlador podremos buscar, borrar, añadir y buscar por ID.
+     */
     public ObjetosController(Connection connection) {
         this.connection = connection;
     }
 
+    /**
+     * Este método recoge toda la información actual que hay en la tabla objetos y la muestra para que el usuario la pueda leer.
+     */
     public void showObjetos() throws SQLException, IOException {
         ResultSet rs = null;
         String sql = "SELECT * FROM objetos";
@@ -37,6 +50,9 @@ public class ObjetosController {
         }
     }
 
+    /**
+     * Este método lo que hace es borrar la tabla objetos en el caso de que esté creada.
+     */
     public void deleteObjetos() throws SQLException, IOException {
         String sql = "DROP TABLE objetos";
 
@@ -53,6 +69,9 @@ public class ObjetosController {
         }
     }
 
+    /**
+     * Aquí creamos la tabla objetos y la llenamos con sus atributos.
+     */
     public void addObjetos() {
         try {
             Statement st = connection.createStatement();
@@ -72,6 +91,11 @@ public class ObjetosController {
         }
     }
 
+    /**
+     * Aquí mostramos la información actual de la tabla objetos en base al atributo "id_objetos", y después le preguntará al usuario que ID de objeto quiere introducir,
+     * y una vez se haya introducido una ID, mostrará toda la información de ese objeto en concreto.
+     *
+     */
     public void mostrarIDObjetos(){
         ResultSet rs = null;
         System.out.println("Inserta una ID de objeto: ");

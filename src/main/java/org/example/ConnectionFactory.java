@@ -7,6 +7,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * El ConnectionFactory establece y gestiona una conexión a una BBDD de PostgreSQL.
+ *
+ * @author Daniel Ruiz - Daniel88871 in GitHub
+ * @version 8.0
+ */
 public class ConnectionFactory {
 	// init database constants
 	private static final String DATABASE_DRIVER = "org.postgresql.Driver";
@@ -28,23 +34,30 @@ public class ConnectionFactory {
 	// init properties object
 	private Properties properties;
 
+	/**
+	 * Inicias la conexión
+	 */
 	private ConnectionFactory() {
 		super();
 		init();
 	}
 
+	/**
+	 * Este método sirve para coger el Instance
+	 *
+	 * @return devuelve el Instance
+	 */
 	public static ConnectionFactory getInstance() {
 		if (instance == null) {
 			instance = new ConnectionFactory();
 		}
 		return instance;
 	}
-	
+
 	/**
-	 * Initializes the class loading the database properties file and assigns values
-	 * to the instance variables.
-	 * 
-	 * @throws RuntimeException Properties file could not be found.
+	 * Inicializa la clase cargando el archivo de propiedades de la base de datos y asigna valores a las variables de instancia.
+	 *
+	 * @throws RuntimeException Salta cuando no encuentra el archivo propierties.
 	 */
 	public void init() {
 		Properties prop = new Properties();
@@ -65,7 +78,11 @@ public class ConnectionFactory {
 		}
 	}
 
-//	// create properties
+	/**
+	 * Creas los properties
+	 *
+	 * @return te devuelve el properties una vez ya creado
+	 */
 	private Properties getProperties() {
 		if (properties == null) {
 			properties = new Properties();
@@ -76,7 +93,9 @@ public class ConnectionFactory {
 		return properties;
 	}
 
-	// connect database
+	/**
+	 * Para conectarte a la BBDD
+	 */
 	public Connection connect() {
 		if (connection == null) {
 
@@ -108,7 +127,9 @@ public class ConnectionFactory {
 		return connection;
 	}
 
-	// disconnect database
+	/**
+	 * Para desconectarte de la BBDD
+	 */
 	public void disconnect() {
 		if (connection != null) {
 			try {
