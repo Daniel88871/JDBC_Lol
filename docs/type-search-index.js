@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.example","l":"CampeonesController"},{"p":"org.example","l":"ConnectionFactory"},{"p":"org.example","l":"HechizosController"},{"p":"org.example","l":"Identity"},{"p":"org.example","l":"Main"},{"p":"org.example","l":"Menu"},{"p":"org.example","l":"ObjetosController"}];updateSearchResults();
