@@ -36,6 +36,7 @@ public class ConnectionFactory {
 
 	/**
 	 * Inicias la conexión
+	 *
 	 */
 	private ConnectionFactory() {
 		super();
@@ -94,7 +95,9 @@ public class ConnectionFactory {
 	}
 
 	/**
-	 * Para conectarte a la BBDD
+	 * Para conectarte a la BBDD.
+	 * @return Devuelve la conexión para poder conectarte a la BBDD.
+	 *
 	 */
 	public Connection connect() {
 		if (connection == null) {
@@ -129,6 +132,7 @@ public class ConnectionFactory {
 
 	/**
 	 * Para desconectarte de la BBDD
+	 *
 	 */
 	public void disconnect() {
 		if (connection != null) {

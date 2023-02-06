@@ -21,6 +21,13 @@ import java.util.List;
  */
 public class Main {
 
+	/**
+	 * Aquí es donde se ejecuta el programa.
+	 * @param args Esto son argumentos que le pasas al main
+	 * @throws IOException Si no puede ejecutar el método, saltará un error.
+	 * @throws SQLException Si no puede mostrar las casillas, saltará un error.
+	 * @throws ParseException Otros errores.
+	 */
 	public static void main(String[] args) throws IOException, SQLException, ParseException {
 		Menu menu = new Menu();
 
@@ -106,6 +113,7 @@ public class Main {
 	 * Este método crea una lista de la data de un archivo CSV que leeremos con BufferedReader.
 	 * Una vez hecho esto, separaremos la línea haciendo un split, y añadiremos el resultado de la información en
 	 * la lista que hemos creado. Una vez hecho esto, lo recorrerá con un for, y hará los INSERTS del archivo CSV.
+	 * @param connection le pasas la conexión de la BBDD para que pueda ejecutar los métodos
 	 *
 	 */
 	public static void CSVCampeones(Connection connection) {
@@ -157,6 +165,7 @@ public class Main {
 	 * Este método crea una lista de la data de un archivo CSV que leeremos con BufferedReader.
 	 * Una vez hecho esto, separaremos la línea haciendo un split, y añadiremos el resultado de la información en
 	 * la lista que hemos creado. Una vez hecho esto, lo recorrerá con un for, y hará los INSERTS del archivo CSV.
+	 * @param connection le pasas la conexión de la BBDD para que pueda ejecutar los métodos
 	 *
 	 */
 	public static void CSVHechizos(Connection connection) {
@@ -202,6 +211,7 @@ public class Main {
 	 * Este método crea una lista de la data de un archivo CSV que leeremos con BufferedReader.
 	 * Una vez hecho esto, separaremos la línea haciendo un split, y añadiremos el resultado de la información en
 	 * la lista que hemos creado. Una vez hecho esto, lo recorrerá con un for, y hará los INSERTS del archivo CSV.
+	 * @param connection le pasas la conexión de la BBDD para que pueda ejecutar los métodos
 	 *
 	 */
 	public static void CSVObjetos(Connection connection) {

@@ -19,6 +19,8 @@ public class HechizosController {
 
 	/**
 	 * Esto nos permite conectarnos a la base de datos del postgresql y con este controlador podremos buscar, borrar, añadir y buscar por ID.
+	 * @param connection le pasas la conexión de la BBDD para que pueda ejecutar los métodos
+	 *
 	 */
 	public HechizosController(Connection connection) {
 		this.connection = connection;
@@ -26,6 +28,9 @@ public class HechizosController {
 
 	/**
 	 * Este método recoge toda la información actual que hay en la tabla hechizos y la muestra para que el usuario la pueda leer.
+	 * @throws SQLException Si no puede mostrar la tabla hechizos, enseña un error.
+	 * @throws IOException Lo mismo que el SQLException.
+	 *
 	 */
 	public void showHechizos() throws SQLException, IOException {
 		ResultSet rs = null;
@@ -50,6 +55,9 @@ public class HechizosController {
 
 	/**
 	 * Este método lo que hace es borrar la tabla hechizos en el caso de que esté creada.
+	 * @throws SQLException Si no puede borrar la tabla hechizos, enseña un error.
+	 * @throws IOException Lo mismo que SQLException.
+	 *
 	 */
 	public void deleteHechizos() throws  SQLException, IOException {
 		String sql = "DROP TABLE hechizos";
@@ -69,6 +77,7 @@ public class HechizosController {
 
 	/**
 	 * Aquí creamos la tabla hechizos y la llenamos con sus atributos.
+	 *
 	 */
 	public void addHechizos() {
 		try {

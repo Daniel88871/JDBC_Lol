@@ -16,6 +16,7 @@ public class Menu {
 
 	/**
 	 * Este constructor llama al super(), en el que mostraremos el menú.
+	 *
 	 */
 	public Menu() {
 		super();
@@ -67,6 +68,8 @@ public class Menu {
 	 *
 	 * @return La identidad del usuario.
 	 * @throws IOException Devuelve una excepción si hay problemas al leer los datos del usuario.
+	 * @param tries El número de intentos que el usuario inicia sesión
+	 *
 	 */
 	public Identity authenticate(int tries) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

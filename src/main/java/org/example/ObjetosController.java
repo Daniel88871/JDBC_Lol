@@ -22,6 +22,8 @@ public class ObjetosController {
 
     /**
      * Esto nos permite conectarnos a la base de datos del postgresql y con este controlador podremos buscar, borrar, añadir y buscar por ID.
+     * @param connection le pasas la conexión de la BBDD para que pueda ejecutar los métodos
+     *
      */
     public ObjetosController(Connection connection) {
         this.connection = connection;
@@ -29,6 +31,9 @@ public class ObjetosController {
 
     /**
      * Este método recoge toda la información actual que hay en la tabla objetos y la muestra para que el usuario la pueda leer.
+     * @throws SQLException Si no puede mostrar la tabla objetos, enseña un error.
+     * @throws IOException Lo mismo que SQLException.
+     *
      */
     public void showObjetos() throws SQLException, IOException {
         ResultSet rs = null;
@@ -52,6 +57,9 @@ public class ObjetosController {
 
     /**
      * Este método lo que hace es borrar la tabla objetos en el caso de que esté creada.
+     * @throws SQLException Si no puede borrar la tabla objetos, enseña un error.
+     * @throws IOException Lo mismo que SQLException.
+     *
      */
     public void deleteObjetos() throws SQLException, IOException {
         String sql = "DROP TABLE objetos";
@@ -71,6 +79,7 @@ public class ObjetosController {
 
     /**
      * Aquí creamos la tabla objetos y la llenamos con sus atributos.
+     *
      */
     public void addObjetos() {
         try {

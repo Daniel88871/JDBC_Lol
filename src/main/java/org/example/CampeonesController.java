@@ -22,6 +22,8 @@ public class CampeonesController {
 
 	/**
 	 * Esto nos permite conectarnos a la base de datos del postgresql y con este controlador podremos buscar, borrar, añadir y buscar por ID.
+	 * @param connection le pasas la conexión de la BBDD para que pueda ejecutar los métodos
+	 *
 	 */
 	public CampeonesController(Connection connection) {
 		this.connection = connection;
@@ -29,6 +31,9 @@ public class CampeonesController {
 
 	/**
 	 * Este método recoge toda la información actual que hay en la tabla campeones y la muestra para que el usuario la pueda leer.
+	 * @throws SQLException Si no puede enseñar la tabla campeones, enseña un error.
+	 * @throws IOException Lo mismo que SQLException.
+	 *
 	 */
 	public void showCampeones() throws SQLException, IOException {
 		ResultSet rs = null;
@@ -56,6 +61,9 @@ public class CampeonesController {
 
 	/**
 	 * Este método lo que hace es borrar la tabla campeones en el caso de que esté creada.
+	 * @throws SQLException Si no puede borrar la tabla campeones, enseña un error.
+	 * @throws IOException Lo mismo que el SQLException.
+	 *
 	 */
 	public void deleteCampeones() throws SQLException, IOException {
 		String sql = "DROP TABLE campeones";
@@ -75,6 +83,7 @@ public class CampeonesController {
 
 	/**
 	 * Aquí creamos la tabla campeones y la llenamos con sus atributos.
+	 *
 	 */
 	public void addCampeones() {
 		try {
