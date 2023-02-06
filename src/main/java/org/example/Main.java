@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * La clase Main es la clase principal de nuestra práctica, se encargará de iniciar la conexión a nuestra BBDD y mostrará el
  * menu principal, con el que el usuario interactuará con las tablas.
@@ -19,7 +20,12 @@ import java.util.List;
  * @author Daniel Ruiz - Daniel88871 in GitHub
  * @version 8.0
  */
-  public class Main {
+public class Main {
+
+	/**
+	 * Un constructor main vacio
+	 */
+	public Main() {}
 
 	/**
 	 * Aquí es donde se ejecuta el programa.
