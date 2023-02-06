@@ -19,7 +19,7 @@ import java.util.List;
  * @author Daniel Ruiz - Daniel88871 in GitHub
  * @version 8.0
  */
-public class Main {
+  public class Main {
 
 	/**
 	 * Aquí es donde se ejecuta el programa.
